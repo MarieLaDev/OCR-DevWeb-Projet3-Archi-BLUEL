@@ -1,4 +1,7 @@
-import { getDonnees } from "./get-function.js";
+import { generateGallery } from "./generate-gallery.js";
+import { genererBtnFiltre } from "./filtres.js";
 
-const works = await getDonnees('works');
-console.log(works);
+// Appeler la fonction pour générer la galerie
+
+generateGallery();
+genererBtnFiltre();

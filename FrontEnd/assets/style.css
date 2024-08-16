@@ -224,6 +224,39 @@ li:hover {
 	margin-bottom: 1em;
 }
 
+.btn-zone,
+a.filter-btn {
+	display: flex;
+}
+
+.btn-zone {
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 15px;
+}
+
+a.filter-btn {
+	align-items: center;
+	text-align: center;
+	height: 37px;
+	border: 1px solid #1D6154;
+	color: #1D6154;
+	text-decoration: none;
+	padding: 0 25px 0 25px;
+	border-radius: 60px;
+	margin-bottom: 40px;
+	font-weight: 700;
+	font-family: 'syne';
+	font-size: 16px;
+}
+
+a.filter-btn:hover {
+	border: 1px solid #1D6154;
+	color: white;
+	background-color: #1D6154;
+}
+
 .gallery {
 	width: 100%;
 	display: grid;
