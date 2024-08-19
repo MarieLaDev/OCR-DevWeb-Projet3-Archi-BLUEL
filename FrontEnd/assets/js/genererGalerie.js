@@ -1,8 +1,8 @@
-import { getDonnees } from "./get-function.js";
+import { getAPI } from "./getAPI.js";
 
-export async function generateGallery() {
+export async function genererGalerie() {
      // Lancement du GET dans l'API works await pour attendre la réponse + GET des catégories
-     const works = await getDonnees('works');
+     const works = await getAPI('works');
      
 
      // Récupération de l'élément DOM de la galerie qui accueillera les "work(s)"
@@ -24,19 +24,7 @@ export async function generateGallery() {
           // ajout des éléments
           contenerWork.setAttribute("workid", work.id);
           contenerWork.setAttribute("userid", work.userId);
-          contenerWork.setAttribute("categoryname", work.category.name)
-          
-          /*
-          // GET des catégories dans l'API
-          const categorie = await getDonnees('categories');
-
-          for (let j = 0; j < categorie.length; j++) {
-               if (work.categoryId === categorie[j].id) {
-               contenerWork.setAttribute("categoryname2", categorie[i].name);
-               console.log(categorie.name);
-               break
-               } 
-          }*/
+          contenerWork.setAttribute("categoryid", work.category.id)
 
           // Rattacher les éléments pour chaque "work"
           contenerWork.appendChild(imgWork);

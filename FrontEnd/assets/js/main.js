@@ -1,7 +1,8 @@
-import { generateGallery } from "./generate-gallery.js";
-import { genererBtnFiltre } from "./filtres.js";
+import { genererGalerie } from "./genererGalerie.js";
+import { genererBtnsFiltres } from "./genererBtnFiltres.js";
 
 // Appeler la fonction pour générer la galerie
+genererGalerie();
 
-generateGallery();
-genererBtnFiltre();
+// Appeler la fonction pour générer les filtres
+genererBtnsFiltres();

@@ -1,10 +1,10 @@
 // Fonction GET sur l'API au choix dans l'argument de getDonnees "type"
 
-export async function getDonnees(type) {
+export async function getAPI(type) {
     // Cherche les données éléments dans l'API 
     const reponse = await fetch("http://localhost:5678/api/" + type);
 
-    console.log(reponse)
+    console.log(reponse);
 
      // convertit la réponse en objet JavaScript
     const data = await reponse.json();

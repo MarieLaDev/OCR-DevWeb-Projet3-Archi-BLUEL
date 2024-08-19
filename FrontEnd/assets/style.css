@@ -224,8 +224,10 @@ li:hover {
 	margin-bottom: 1em;
 }
 
+/**** Gestion des boutons filtres ****/
 .btn-zone,
-a.filter-btn {
+a.filter-btn,
+.focus {
 	display: flex;
 }
 
@@ -255,6 +257,27 @@ a.filter-btn:hover {
 	border: 1px solid #1D6154;
 	color: white;
 	background-color: #1D6154;
+}
+
+.focus {
+	align-items: center;
+	text-align: center;
+	height: 37px;
+	text-decoration: none;
+	padding: 0 25px 0 25px;
+	border-radius: 60px;
+	margin-bottom: 40px;
+	font-weight: 700;
+	font-family: 'syne';
+	font-size: 16px;
+	border: 1px solid #1D6154;
+	color: white;
+	background-color: #1D6154;
+}
+
+/* Gestion des projets à masquer */
+.hidden {
+	display: none;
 }
 
 .gallery {
