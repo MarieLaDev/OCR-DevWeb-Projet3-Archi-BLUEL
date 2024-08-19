@@ -1,9 +1,10 @@
 import { getAPI } from "./getAPI.js";
+import { gererClicsFiltres } from "./gererClicsFiltres.js";
 
 // Génération des bouton filtres et filtre les résultats
 
 
-export async function genererBtnFiltre() {
+export async function genererBtnsFiltres() {
      const portfolio = document.getElementById("portfolio");
      // Selection du h2 du portfolio
      const titre = portfolio.querySelector("h2");
@@ -29,12 +30,25 @@ export async function genererBtnFiltre() {
      // Créer les boutons dans boucle for
      for (let i=0; i < listeCategorie.length; i++) {
           // crée la balise a avec le nom des catégories
-          const btnFiltre = document.createElement("a");
-          btnFiltre.className = "filter-btn";
+          const genereFiltre = document.createElement("a");
+          genereFiltre.setAttribute("href", "#");
+          genereFiltre.className = "filter-btn";
           
-          // Le texte dans la balise a élément.textcontent = ""
-          btnFiltre.textContent = listeCategorie[i].name;
-          // Mettre le filtre dans le contFiltres
-          contFiltres.appendChild(btnFiltre);
-     }  
+          if (i === 0) {
+               genereFiltre.className = "focus";
+          } else {
+               genereFiltre.className = "filter-btn";
+          }
+          
+          /*console.log(genereFiltre);*/
+          
+          // Le texte dans la balise a element.textcontent = "..."
+          genereFiltre.textContent = listeCategorie[i].name;
+          genereFiltre.name = listeCategorie[i].name;
+          genereFiltre.setAttribute("id", listeCategorie[i].id )
+
+          // Mettre les btn filtres dans le contFiltres
+          contFiltres.appendChild(genereFiltre);
+     }
+     gererClicsFiltres();
 }
