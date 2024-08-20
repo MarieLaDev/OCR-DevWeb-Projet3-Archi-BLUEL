@@ -109,6 +109,7 @@ section {
 
 body {
 	line-height: 1;
+	background-color: #FFFEF8;
 }
 
 ol,
@@ -187,8 +188,18 @@ nav li {
 	font-size: 1.2em;
 }
 
-li:hover {
+li a {
+	text-decoration: none;
+	color: black;
+}
+
+li a:hover {
 	color: #B1663C;
+	font-weight: 600;
+}
+
+.insta {
+	height: 20px;
 }
 
 #introduction {
