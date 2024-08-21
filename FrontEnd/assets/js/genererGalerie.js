@@ -4,7 +4,6 @@ export async function genererGalerie() {
      // Lancement du GET dans l'API works await pour attendre la réponse + GET des catégories
      const works = await getAPI('works');
      
-
      // Récupération de l'élément DOM de la galerie qui accueillera les "work(s)"
      const gallery = document.querySelector(".gallery");
 
