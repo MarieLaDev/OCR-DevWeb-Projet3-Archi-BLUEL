@@ -1,5 +1,14 @@
 import { getAPI } from "./getAPI.js";
 
+/****************************************** 
+ * REVOIR data à la place de setAttribute *
+ * ****************************************/
+
+
+
+/**
+ * Gère les boutons filtres de la page index.html la variable btnsFiltres permettra de récupérer les catégories pour l'ajout de projets
+ */
 export function gererFiltres() {
      genererBtnsFiltres().then(() => {
      
@@ -62,6 +71,13 @@ export function gererFiltres() {
      });  
 }
 
+/**
+ * Permet de créer les éléments DOM des filtres 
+ * 
+ * 
+ * 
+ * VOIR DATA à la place de setAttribute
+ */
 async function genererBtnsFiltres() {
      const portfolio = document.getElementById("portfolio");
      // Selection du h2 du portfolio
@@ -86,13 +102,13 @@ async function genererBtnsFiltres() {
      console.log(listeCategorie);
 
      // Créer les boutons dans boucle for
-     for (let i=0; i < listeCategorie.length; i++) {
+     for (let categorie of listeCategorie) {
           // crée la balise a avec le nom des catégories
           const genereFiltre = document.createElement("a");
           genereFiltre.setAttribute("href", "#");
           genereFiltre.className = "filter-btn";
           
-          if (i === 0) {
+          if (categorie.id === 0) {
                genereFiltre.className = "focus";
           } else {
                genereFiltre.className = "filter-btn";
@@ -101,9 +117,9 @@ async function genererBtnsFiltres() {
           /*console.log(genereFiltre);*/
           
           // Le texte dans la balise a element.textcontent = "..."
-          genereFiltre.textContent = listeCategorie[i].name;
-          genereFiltre.name = listeCategorie[i].name;
-          genereFiltre.setAttribute("id", listeCategorie[i].id )
+          genereFiltre.textContent = categorie.name;
+          genereFiltre.name = categorie.name;
+          genereFiltre.setAttribute("id", categorie.id )
 
           // Mettre les btn filtres dans le contFiltres
           contFiltres.appendChild(genereFiltre);
