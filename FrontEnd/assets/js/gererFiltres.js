@@ -1,5 +1,14 @@
 import { getAPI } from "./getAPI.js";
 
+/****************************************** 
+ * REVOIR data à la place de setAttribute *
+ * ****************************************/
+
+
+
+/**
+ * Gère les boutons filtres de la page index.html la variable btnsFiltres permettra de récupérer les catégories pour l'ajout de projets
+ */
 export function gererFiltres() {
      genererBtnsFiltres().then(() => {
      
@@ -62,6 +71,13 @@ export function gererFiltres() {
      });  
 }
 
+/**
+ * Permet de créer les éléments DOM des filtres 
+ * 
+ * 
+ * 
+ * VOIR DATA à la place de setAttribute
+ */
 async function genererBtnsFiltres() {
      const portfolio = document.getElementById("portfolio");
      // Selection du h2 du portfolio
