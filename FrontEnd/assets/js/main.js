@@ -1,13 +1,14 @@
+import { ready } from "./attendreDOM.js";
 import { genererGalerie } from "./genererGalerie.js";
-import { genererBtnsFiltres } from "./genererBtnFiltres.js";
-import { genererFenetreLogin } from "./genererFenetreLogin.js";
+import { gererFiltres } from "./gererFiltres.js";
+import { gererConnexion } from "./gererConnexion.js";
 
 
-// Appeler la fonction pour générer la galerie
-genererGalerie();
+// Appeler la fonction pour générer la galerie quand le DOM est chargé
+ready(genererGalerie);
 
-// Appeler la fonction pour générer les filtres
-genererBtnsFiltres();
+// Appeler la fonction pour générer les filtres quand le DOM est chargé
+ready(gererFiltres);
 
-// Appeler la fonctoin pour générer les liens du menu
-genererFenetreLogin();
+// Appeler la fonction de gestion de la connexion quand le DOM est chargé
+ready(gererConnexion);

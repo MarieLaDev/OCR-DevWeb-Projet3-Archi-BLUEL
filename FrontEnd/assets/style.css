@@ -109,7 +109,6 @@ section {
 
 body {
 	line-height: 1;
-	background-color: #FFFEF8;
 }
 
 ol,
@@ -141,16 +140,17 @@ body {
 	margin: auto;
 	font-family: 'Work Sans';
 	font-size: 14px;
+	background-color: #FFFEF8;
 }
 
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0;
+	margin: 50px 0 50px 0;
 }
 
 section {
-	margin: 50px 0;
+	margin: 70px 0;
 }
 
 h1 {
@@ -164,9 +164,16 @@ h1 {
 
 h1>span {
 	font-family: 'Work Sans';
-	font-size: 10px;
-	letter-spacing: 0.1em;
-	;
+	font-weight: 500;
+	font-size: 13px;
+	letter-spacing: 0.09em;
+	padding-top: 3px;
+	font-variant-caps: all-small-caps;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
 }
 
 h2 {
@@ -198,9 +205,83 @@ li a:hover {
 	font-weight: 600;
 }
 
+/* Ajout classe insta pour logo instagram */
 .insta {
 	height: 20px;
 }
+
+/* Ajout éléments de mise en forme formulaire */
+#connexion,
+#connexion form,
+input,
+.form a {
+	display: flex;
+}
+
+#connexion {
+	flex-direction: column;
+	align-items: center;
+	width: 50%;
+	margin: auto;
+	gap: 20px;
+	min-height: 550px;
+	margin-top: 80px;
+}
+
+.inactif {
+	display: none !important;
+}
+
+#connexion form {
+	flex-direction: column;
+	text-align: left;
+}
+
+#connexion label {
+	font-weight: 500;
+	font-family: "Work Sans";
+	font-size: 14px;
+	margin: 2em 0 1em 0;
+}
+
+#connexion input {
+	height: 50px;
+	font-size: 1em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	font-family: "syne";
+	width: 379px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+#connexion button {
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 14px;
+	color: white;
+	font-size: 1.2em;
+	background-color: #1D6154;
+	margin: 2em auto;
+	height: 36px;
+	border: none;
+	text-align: center;
+	border-radius: 60px;
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
+#connexion a {
+	font-family: "Syne";
+	text-align: center;
+	color: black;
+	font-weight: 500;
+}
+
+
+
+
+/*********************************/
 
 #introduction {
 	display: flex;
@@ -227,7 +308,7 @@ li a:hover {
 
 #introduction p {
 	margin-bottom: 0.5em;
-	width: 404px;
+	margin-right: 60px;
 }
 
 #portfolio h2 {
@@ -247,6 +328,7 @@ a.filter-btn,
 	justify-content: center;
 	align-items: center;
 	gap: 15px;
+	margin-top: 20px;
 }
 
 a.filter-btn {
@@ -286,13 +368,14 @@ a.filter-btn:hover {
 	background-color: #1D6154;
 }
 
-/* Gestion des projets à masquer */
-.hidden {
-	display: none;
+#portfolio {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .gallery {
-	width: 100%;
+	width: 90%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-column-gap: 20px;
@@ -304,9 +387,15 @@ a.filter-btn:hover {
 
 }
 
+/* Gestion des éléments à masquer */
+.hidden {
+	display: none;
+}
+
+/**************************/
 #contact {
 	width: 50%;
-	margin: auto;
+	margin: 0px auto;
 }
 
 #contact>* {
@@ -315,12 +404,17 @@ a.filter-btn:hover {
 }
 
 #contact h2 {
-	margin-bottom: 20px;
+	margin-bottom: 16px;
+}
+
+#contact p {
+	font-family: "Work Sans";
+	font-size: 16px;
 }
 
 #contact form {
 	text-align: left;
-	margin-top: 30px;
+	margin-top: 2px;
 	display: flex;
 	flex-direction: column;
 }
@@ -334,6 +428,8 @@ a.filter-btn:hover {
 
 #contact label {
 	margin: 2em 0 1em 0;
+	font-family: "Work Sans";
+	font-weight: 500;
 }
 
 #contact textarea {
@@ -352,8 +448,12 @@ input[type="submit"] {
 	border-radius: 60px;
 }
 
-footer nav ul {
+footer {
 	display: flex;
 	justify-content: flex-end;
+	padding-bottom: 50px;
+}
+
+footer nav ul {
 	margin: 2em;
 }
