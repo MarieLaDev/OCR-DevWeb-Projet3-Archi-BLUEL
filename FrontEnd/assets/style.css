@@ -211,14 +211,14 @@ li a:hover {
 }
 
 /* Ajout éléments de mise en forme formulaire */
-#connexion,
-#connexion form,
+#divConnex,
+#connex,
 input,
 .form a {
 	display: flex;
 }
 
-#connexion {
+#divConnex {
 	flex-direction: column;
 	align-items: center;
 	width: 50%;
@@ -232,19 +232,19 @@ input,
 	display: none !important;
 }
 
-#connexion form {
+#connex {
 	flex-direction: column;
 	text-align: left;
 }
 
-#connexion label {
+#connex label {
 	font-weight: 500;
 	font-family: "Work Sans";
 	font-size: 14px;
 	margin: 2em 0 1em 0;
 }
 
-#connexion input {
+#connex input {
 	height: 50px;
 	font-size: 1em;
 	border: none;
@@ -255,7 +255,7 @@ input,
 	padding-right: 20px;
 }
 
-#connexion button {
+#btnConnex {
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 14px;
@@ -271,7 +271,7 @@ input,
 	padding-right: 40px;
 }
 
-#connexion a {
+#connex a {
 	font-family: "Syne";
 	text-align: center;
 	color: black;
