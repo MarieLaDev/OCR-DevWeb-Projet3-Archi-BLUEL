@@ -1,4 +1,4 @@
-import { getAPI } from "./getAPI.js";
+import { getAPI } from "./fetchAPI.js";
 
 /****************************************** 
  * REVOIR data à la place de setAttribute *
