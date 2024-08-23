@@ -1,30 +1,24 @@
-import { getAPI } from "./getAPI.js";
+import { fetchAPI } from "./fetchAPI.js";
 
-function gererConnexion() {
-     const btnConnex = document.getElementById("btnConnex");
-
+async function gererConnexion() {
+     const formConnex = document.querySelector("form");
      
-     btnConnex.addEventListener("click", (event) => {
+     formConnex.addEventListener("submit", async (event) => {
           event.preventDefault();
-          // récupére l'input email
-          const emailInput = document.querySelector("input[id='email']");
-          // récupère l'input password
-          const passwordInput = document.querySelector("input[id='password']");
-
-          // Récupère les valeurs
-          const email = emailInput.value;
-          const password = passwordInput.value;
           
-          // Construit un objet body
-          const objetBody = {"email": email, "password": password};
-          console.log(objetBody);
+          // récupére la valeur de l'input email
+          const email = document.querySelector("input[id='email']").value;
+          // récupère la valeur de l'input password
+          const password = document.querySelector("input[id='password']").value;
+          
+          console.log(`L'email est ${email} et le mot de passe est ${password}`);
           
           /* On attends en body un format
           {"email": "string", "password": "string"}
           */
           
-          // Prépare le body
-          const body=JSON.stringify(objetBody);
+          // Construit et prépare le body pour l'API
+          const body = JSON.stringify({email, password});
           console.log(body);
      
           // Crée l'objet pour le post
@@ -33,21 +27,23 @@ function gererConnexion() {
                body,
                headers: { "Content-Type": "application/json" }
                };
-
           console.log(objetLogin);
           
-          try {
-               const reponseLogin = getAPI("users/login", objetLogin);
-               console.log(reponseLogin);
-          } catch(error) {
-               alert(error);
-          }
+          // Poster à l'API et attendre la réponse
+          const reponse = await fetchAPI("users/login", objetLogin);
+
+          // Mettre en forme et stocker dans le sessionStorage
+          sessionStorage.setItem("token", JSON.stringify(reponse));
+          
+          // Récupérer le token dans local storage
+          let token = sessionStorage.getItem("token");
+          // JSON.parse() pour transformer un session ou local storage en objet JavaScript
+          token = JSON.parse(token);
+          console.log("Le Token de sessionStorage est : ")
+          console.log(token.token);
      });
      
           
-     
-     
-     
      
      
           /* Si besoin de stocker dans le localStorage organiser l'objet en json avec : const nomConstante = JSON.stringify(nomVariable); puis stocker dans le localStorage localStorage.setItem("nomConstante");*/

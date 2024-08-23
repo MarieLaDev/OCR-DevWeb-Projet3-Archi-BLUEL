@@ -1,10 +1,10 @@
-import { getAPI } from "./getAPI.js";
+import { fetchAPI } from "./fetchAPI.js";
 
 export async function genererGalerie() {
      // Essayer de générer la gallerie ou générer l'erreur système
      try {
           // Lancement du GET dans l'API works await pour attendre la réponse
-          const works = await getAPI('works');
+          const works = await fetchAPI('works');
           
           console.log(works);
           
