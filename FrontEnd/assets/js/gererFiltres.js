@@ -1,4 +1,4 @@
-import { getAPI } from "./fetchAPI.js";
+import { fetchAPI } from "./fetchAPI.js";
 
 /****************************************** 
  * REVOIR data à la place de setAttribute *
@@ -98,7 +98,7 @@ async function genererBtnsFiltres() {
      let listeCategorie = [{"id" : 0, "name" : "Tous"},];
      
      // Récupère les catégories
-     const categories = await getAPI("categories");
+     const categories = await fetchAPI("categories");
 
      // Ajouter 1 par 1 les éléments
      listeCategorie.push(...categories);
