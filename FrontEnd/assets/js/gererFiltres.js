@@ -94,23 +94,38 @@ async function genererBtnsFiltres() {
      // Insérer le conteneur de filtre après le h2
      titre.insertAdjacentElement("afterend", contFiltres);
 
-     // Création d'un objet listeCategorie avec "Tous"
-     let listeCategorie = [{"id" : 0, "name" : "Tous"},];
+     const listeProjets = document.querySelectorAll(".gallery figure");
+     console.log(listeProjets);
      
-     // Récupère les catégories
-     const categories = await fetchAPI("categories");
+     let categoriesGalerie = [];
+     let ajoutCategorie = new Set();
 
-     // Ajouter 1 par 1 les éléments
-     listeCategorie.push(...categories);
-     console.log(listeCategorie);
+     for (let projet of listeProjets) {
+          let objetCategorie = {id: projet.dataset.categoryid, name: projet.dataset.categoryname};
+          // Transformer l'objet en JSON.stringify pour garantir l'unicité dans le set
+          let newCateg = JSON.stringify(objetCategorie);
+
+          // Vérifier que l'élément est nouveau pour le set (ajoutCategorie n'a pas newCateg dans sa liste)
+          if (!ajoutCategorie.has(newCateg)) {
+               // créer l'ajout dans le set pour la prochaine boucle
+               ajoutCategorie.add(newCateg);
+               // ajouter l'objet dans categorieGalerie
+               categoriesGalerie.push(objetCategorie);
+          }
+     }
+
+     console.log(categoriesGalerie);
      
-     // Stocker les catégories dans sessionStorage
-     sessionStorage.setItem("categories", JSON.stringify(categories));
-     console.log(`Les catégories de l'API sont stockées dans sessionStorage`);
-     console.log(`Les catégories stockées dans localSession sont ${sessionStorage.getItem("categories")}`);
+     // Création d'un objet listeCategories avec "Tous"
+     let listeCategories = [{"id" : 0, "name" : "Tous"},];
+     
+     
+     // Ajouter 1 par 1 les éléments
+     listeCategories.push(...categoriesGalerie);
+     console.log(listeCategories);
 
      // Créer les boutons dans boucle for
-     for (let categorie of listeCategorie) {
+     for (let categorie of listeCategories) {
           // crée la balise a avec le nom des catégories
           const genereFiltre = document.createElement("a");
           genereFiltre.setAttribute("href", "#");
@@ -122,8 +137,6 @@ async function genererBtnsFiltres() {
                genereFiltre.className = "filter-btn";
           }
           
-          /*console.log(genereFiltre);*/
-          
           // Le texte dans la balise a element.textcontent = "..."
           genereFiltre.textContent = categorie.name;
           genereFiltre.dataset.categorieName = categorie.name;
@@ -132,5 +145,5 @@ async function genererBtnsFiltres() {
           // Mettre les btn filtres dans le contFiltres
           contFiltres.appendChild(genereFiltre);
      }
-     return categories;
+     
 }
