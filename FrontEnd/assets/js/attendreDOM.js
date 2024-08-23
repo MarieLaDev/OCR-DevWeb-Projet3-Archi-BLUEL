@@ -1,13 +1,11 @@
-export function ready(fonction) {
-    // Crée une "promesse"  
+/**
+ * attend que le DOM soit intégralement chargé
+ * @returns resolve
+ */
+export function ready() {
+    // Crée une "promesse" qui renvoie resolve(); lorsque le DOM est chargé 
     return new Promise((resolve) => {
-        // "Ecoute" le chargement du DOM
-        document.addEventListener("DOMContentLoaded", () => {
-          
-            // Lorsque c'est fait il lance la fonction en argument de ready
-            fonction();
-            // Et résout la "promesse"
-            resolve();
-        });
+        // "Ecoute" le chargement du DOM et renvoie resolve lorsque c'est fait
+        document.addEventListener("DOMContentLoaded", resolve);
     });
 }
