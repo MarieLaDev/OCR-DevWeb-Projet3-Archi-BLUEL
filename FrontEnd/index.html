@@ -43,9 +43,11 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<div class="titre-galerie">
+			<h2>Mes Projets</h2>
+			<a href="#" class="modifier hidden"><i class="fa-solid fa-pen-to-square"></i><p> Modifier</p></a>
+		</div>
 		<!-- Boutons de filtre-->
-
 		<div class="gallery">
 			<!-- Images tirées de l'API -->
 		</div>
@@ -63,6 +65,21 @@
 			<input type="submit" value="Envoyer">
 		</form>
 	</section>
+	<!-- div d'arrière plan opacifié -->
+	<div id="arriere" class=""></div>
+	<!-- div de la modale -->
+	<div id="modale">
+		<a href="#" id="close-modale"><i class="fa-solid fa-xmark fa-xl"></i></a>
+		<div class="int-modale">
+			
+			<p>Galerie photo</p>
+			<div class="miniatures">
+
+			</div>
+			<div class="separateur"></div>
+			<a class="btn">Ajouter une photo</a>
+		</div>
+	</div>
 </main>
 
 <footer>

@@ -71,11 +71,9 @@ details,
 embed,
 figure,
 figcaption,
-footer,
 header,
 hgroup,
 menu,
-nav,
 output,
 ruby,
 section,
@@ -98,17 +96,16 @@ aside,
 details,
 figcaption,
 figure,
-footer,
 header,
 hgroup,
 menu,
-nav,
 section {
 	display: block;
 }
 
 body {
 	line-height: 1;
+	align-items: center;
 }
 
 ol,
@@ -147,25 +144,43 @@ body {
 
 .token {
 	display: flex;
+	z-index: 1;
 	justify-content: center;
 	align-items: center;
-	flex: 1 1 auto;
 	height: 59px;
-	width: 100%;
 	background-color: black;
 	color: #FFFEF8;
 	gap: 10px;
+	width: 100%;
 	font-size: 16px;
+	position: fixed;
+	/* reste fixe quand on fait défiler la page necessite de dire ou il doit être fixé ici top:0;  */
+	top: 0;
+	overflow: auto;
+}
+
+.arriere-plan {
+	display: flex;
+	position: fixed;
+	top: 59px;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	z-index: 1;
+	opacity: 50%;
 }
 
 header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	width: 1140px;
-	margin: auto;
+	max-width: 1140px;
+	min-width: 1140px;
 	margin: 50px 0 50px 0;
 }
+
+
 
 section {
 	margin: 70px 0;
@@ -192,6 +207,7 @@ h1>span {
 main {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	max-width: 1140px;
 	margin: auto;
 }
@@ -230,79 +246,6 @@ li a:hover {
 	height: 20px;
 }
 
-/* Ajout éléments de mise en forme formulaire */
-#divConnex,
-#connex,
-input,
-.form a {
-	display: flex;
-}
-
-#divConnex {
-	flex-direction: column;
-	align-items: center;
-	width: 50%;
-	margin: auto;
-	gap: 20px;
-	min-height: 550px;
-	margin-top: 80px;
-}
-
-.inactif {
-	display: none !important;
-}
-
-#connex {
-	flex-direction: column;
-	text-align: left;
-}
-
-#connex label {
-	font-weight: 500;
-	font-family: "Work Sans";
-	font-size: 14px;
-	margin: 2em 0 1em 0;
-}
-
-#connex input {
-	height: 50px;
-	font-size: 1em;
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-	font-family: "syne";
-	width: 379px;
-	padding-left: 20px;
-	padding-right: 20px;
-}
-
-#btnConnex {
-	font-family: 'Syne';
-	font-weight: 700;
-	font-size: 14px;
-	color: white;
-	font-size: 1.2em;
-	background-color: #1D6154;
-	margin: 2em auto;
-	height: 36px;
-	border: none;
-	text-align: center;
-	border-radius: 60px;
-	padding-left: 40px;
-	padding-right: 40px;
-}
-
-#connex a {
-	font-family: "Syne";
-	text-align: center;
-	color: black;
-	font-weight: 500;
-}
-
-
-
-
-/*********************************/
-
 #introduction {
 	display: flex;
 	align-items: center;
@@ -331,9 +274,115 @@ input,
 	margin-right: 60px;
 }
 
-#portfolio h2 {
+/* Mise en forme de la fenêtre modale */
+#modale {
+	display: none;
+	z-index: 99;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 55%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 630px;
+	height: 688px;
+	border-radius: 10px;
+	background-color: white;
+	gap: 26px;
+}
+
+.active {
+	display: flex !important;
+}
+
+#close-modale {
+	justify-self: flex-start;
+	align-self: flex-end;
+	height: 30px;
+	width: auto;
+	margin-right: 26px;
+}
+
+.int-modale {
+	position: relative;
+}
+
+.int-modale p {
+	font-size: 26px;
+	font-family: "Work" sans;
 	text-align: center;
-	margin-bottom: 1em;
+}
+
+.miniatures {
+	display: grid;
+	grid-column: 1fr 1fr 1fr 1fr;
+	grid-row: auto;
+	height: 420px;
+	width: 420px;
+}
+
+.separateur {
+	width: 420px;
+	height: 1px;
+	border-top: 1px solid #b3b3b3;
+}
+
+.int-modale a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 37px;
+	border: 1px solid #1D6154;
+	color: white;
+	background-color: #1D6154;
+	text-decoration: none;
+	padding: 0 25px 0 25px;
+	margin: 40px;
+	border-radius: 60px;
+	margin-bottom: 40px;
+	font-weight: 700;
+	font-family: 'syne';
+	font-size: 16px;
+}
+
+a.int-modale:hover {
+	opacity: 0.8;
+}
+
+/* Mise en forme zone galerie modification */
+.titre-galerie {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 40px;
+	padding-top: 0.3em;
+	margin-bottom: 3em;
+	position: relative;
+
+}
+
+.titre-galerie h2 {
+	display: inline-block;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.modifier {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 4em;
+	margin-top: auto;
+	margin-bottom: auto;
+	text-decoration: none;
+	color: black;
+}
+
+.modifier:hover {
+	color: #1D6154;
+	font-weight: 600;
 }
 
 /**** Gestion des boutons filtres ****/
@@ -471,11 +520,7 @@ input[type="submit"] {
 footer {
 	display: flex;
 	justify-content: flex-end;
-	padding-bottom: 50px;
 	max-width: 1140px;
-	margin: auto;
-}
-
-footer nav ul {
-	margin: 2em;
+	min-width: 1140px;
+	margin: 50px 0 30px 0;
 }

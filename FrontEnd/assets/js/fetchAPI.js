@@ -11,14 +11,16 @@ export async function fetchAPI(type, options = false) {
         if (options) { // Vérifie si option existe
             // Envoyer la requête dans l'API avec les options 
             reponse = await fetch(url, options);
+            console.log(reponse);
         } else {
             // Sinon faire un GET simple sur l'URL
             reponse = await fetch(url);
+            console.log(reponse);
         }
 
         // S'il y a un problème créer l'erreur
         if (!reponse.ok) {
-            throw new Error(`de la requête à la base API : " ${type} "`);
+            throw new Error("Erreur dans le login ou le mot de passe, vous n'avez pas l'accès");
         }
 
         // convertit la réponse en objet JavaScript
@@ -30,5 +32,4 @@ export async function fetchAPI(type, options = false) {
     } catch (error) {
         alert(`Erreur : ${error}`)
     } 
-
 }
