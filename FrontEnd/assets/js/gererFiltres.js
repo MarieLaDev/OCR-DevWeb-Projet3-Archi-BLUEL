@@ -82,15 +82,15 @@ export async function gererFiltres() {
  */
 async function genererBtnsFiltres() {
      const portfolio = document.getElementById("portfolio");
-     // Selection du h2 du portfolio
-     const titre = portfolio.querySelector("h2");
+     // Selection du titre du portfolio
+     const titreGalerie = portfolio.querySelector(".titre-galerie");
 
      // Crée la div des boutons filtres
      const contFiltres = document.createElement("div");
      contFiltres.className = "btn-zone" 
      
      // Insérer le conteneur de filtre après le h2
-     titre.insertAdjacentElement("afterend", contFiltres);
+     titreGalerie.insertAdjacentElement("afterend", contFiltres);
 
      const listeProjets = document.querySelectorAll(".gallery figure");
      console.log(listeProjets);

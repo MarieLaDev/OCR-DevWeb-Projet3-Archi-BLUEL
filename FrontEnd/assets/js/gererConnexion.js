@@ -32,16 +32,20 @@ async function gererConnexion() {
           
           console.log(objetLogin);
           
-          // Poster à l'API et attendre la réponse
-          const token = await fetchAPI("users/login", objetLogin);
-          console.log(token);
-          // Mettre en forme et stocker le token dans le sessionStorage
-          sessionStorage.setItem("token", JSON.stringify(token));
-          console.log(sessionStorage.getItem("token"));
-          
-          
-          /********** Chercher pourquoi le token est null******/
-          
+          try {
+               // Poster à l'API et attendre la réponse
+               let token = await fetchAPI("users/login", objetLogin);
+
+               console.log(token);
+               let stockToken = JSON.stringify(token.token);
+               console.log(stockToken);
+               
+               // Mettre en forme et stocker le token dans le sessionStorage
+               sessionStorage.setItem("token", stockToken);
+               
+          } catch(error) {
+               console.log(error);
+          }         
           // retourner sur index.html
           window.location.href = "../../index.html";
      });
