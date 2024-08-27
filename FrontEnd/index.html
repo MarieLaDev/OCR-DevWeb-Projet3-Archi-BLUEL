@@ -69,16 +69,44 @@
 	<div id="arriere" class=""></div>
 	<!-- div de la modale -->
 	<div id="modale">
-		<a href="#" id="close-modale"><i class="fa-solid fa-xmark fa-xl"></i></a>
-		<div class="int-modale">
-			
-			<p>Galerie photo</p>
-			<div class="miniatures">
-
-			</div>
-			<div class="separateur"></div>
-			<a class="btn">Ajouter une photo</a>
+		<div class="tete-modale">
+			<a href="#" id="retour-modale"> <i class="fa-solid fa-arrow-left fa-xl hidden"></i></a>
+			<a href="#" id="close-modale"><i class="fa-solid fa-xmark fa-xl"></i></a>
 		</div>
+		<div class="int-modale" id="modale-galerie">
+			<p class="titre-modale" id="titre-modale-galerie">Galerie photo</p>
+			<div class="miniatures">
+				<!-- Miniatures avec corbeille -->
+			</div>
+			<div class="pied-modale" id="pied-modale-galerie">
+				<div class="separateur"></div>
+				<a class="focus-btn" id="ouvrir-ajout" href="#">Ajouter une photo</a>
+			</div>
+		</div>
+		<div class="int-modale hidden" id="modale-ajout">
+			<p class="titre-modale" id="titre-modale-ajout">Ajout photo</p>
+			<form id="form-ajout">
+				<input type="file" id="file-input" required>
+				<div>
+					<i class="fa-solid fa-image"></i>
+					<button>+ Ajouter photo</button>
+					<p>jpg, png : 4mo max</p>
+				</div>
+				<label for="titre-projet">Titre</label>
+				<input type="text" name="titre" id="titre-projet" required>
+				<label for="categorie-ajout">Catégorie</label>
+				<select name="categorie" id="categorie-ajout" required>
+					<!-- Catégories de l'API -->
+				</select>	
+			</form>
+			<div class="pied-modale">
+				<div class="separateur"></div>
+				<a class="focus-btn" id="valider-ajout" href="#">Valider</a>
+			</div>
+		</div>
+	</div>
+	<div> 
+		<!-- Ajout de projets -->
 	</div>
 </main>
 

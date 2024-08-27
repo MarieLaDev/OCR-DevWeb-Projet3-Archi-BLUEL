@@ -1,11 +1,20 @@
 /**
- * attend que le DOM soit intégralement chargé
- * @returns resolve
+ *  * attend que le DOM soit intégralement chargé puis que la fonction en argument soit executée
+ * @param {*} fonction 
+ * @returns {Promise} 
  */
-export function ready() {
-    // Crée une "promesse" qui renvoie resolve(); lorsque le DOM est chargé 
+export function attendreDOM(fonction) {
+    // Permettre d'attendre que la fonction en argument soit terminée
     return new Promise((resolve) => {
-        // "Ecoute" le chargement du DOM et renvoie resolve lorsque c'est fait
-        document.addEventListener("DOMContentLoaded", resolve);
+        // Regarde si le DOM est prêt (chargé) 
+        if (document.readyState !== 'loading') {
+            // Si le DOM est déjà chargé, exécuter la fonction en argument
+            fonction().then(resolve).catch(resolve);
+        } else {
+            // Sinon, attendre que le DOM soit complètement chargé puis lancer la fonction
+            document.addEventListener('DOMContentLoaded', () => {
+                fonction().then(resolve).catch(resolve);
+            });
+        }
     });
 }
