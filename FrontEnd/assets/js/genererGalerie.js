@@ -108,7 +108,7 @@ async function genererElementsMiniatures(works) {
           supprimeWork.classList.add("supprime-work");
           supprimeWork.classList.add("fa-solid");
           supprimeWork.classList.add("fa-trash-can");
-          supprimeWork.classList.add("fa-xs");
+          supprimeWork.classList.add("fa-sm");
 
           // Rattacher les éléments pour chaque "work"
           blocImg.appendChild(imgWork);

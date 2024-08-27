@@ -5,7 +5,7 @@ export async function gererModale() {
      // Appeler l'affichage de la modale
      await afficherModale().then( () => {
           supprimerProjet();
-          attendreDOM(clicGalerieAjoutPhoto);
+          clicGalerieAjoutPhoto();
 
 
      });     
@@ -13,13 +13,28 @@ export async function gererModale() {
 
 function clicGalerieAjoutPhoto() {
      const btnAjout = document.getElementById("ouvrir-ajout");
-     
      console.log(btnAjout);
+
      // Ecouter le clic du bouton "ajouter une photo"
      btnAjout.addEventListener("click", (event) => {
           event.preventDefault();
-          modaleAjout=document.getElementById("modale-ajout");
+
+          const modaleGalerie = document.getElementById("modale-galerie")
+          const modaleAjout = document.getElementById("modale-ajout");
+          const btnRetour = document.getElementById("retour-modale");
+          
           modaleAjout.classList.remove("hidden");
+          btnRetour.classList.remove("hidden");
+          modaleGalerie.classList.add("hidden");
+
+
+          btnRetour.addEventListener("click", (event) => {
+               event.preventDefault();
+     
+               modaleAjout.classList.add("hidden");
+               btnRetour.classList.add("hidden");
+               modaleGalerie.classList.remove("hidden");
+          });
      });
 }
 
