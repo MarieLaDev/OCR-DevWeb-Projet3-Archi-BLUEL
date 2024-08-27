@@ -449,7 +449,7 @@ input[type="submit"] {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	width: 630px;
-	height: 688px;
+	height: 700px;
 	border-radius: 10px;
 	background-color: white;
 	gap: 6px;
@@ -493,9 +493,9 @@ input[type="submit"] {
 .int-modale {
 	display: flex;
 	flex-direction: column;
-	gap: 23px;
+	align-items: center;
 	margin-bottom: 45px;
-	margin-top: 45px;
+	margin-top: 55px;
 }
 
 .titre-modale {
@@ -510,7 +510,7 @@ input[type="submit"] {
 	grid-template-columns: repeat(5, 1fr);
 	gap: 8px;
 	grid-template-rows: auto;
-	width: 420px;
+	width: 440px;
 	margin: 0 auto;
 	/* Pour afficher une barre de défilement verticale si besoin sans barre horizontale */
 	overflow-y: auto;
@@ -525,14 +525,15 @@ input[type="submit"] {
 
 .supprime-work {
 	background-color: black;
-	padding: 10px 5px 10px 5px;
+	padding: 4px 4px 4px 4px;
+	line-height: 1;
 	color: white;
 	position: relative;
 	top: -100px;
-	right: -55px;
+	right: -58px;
 	border-radius: 3px;
 	margin: 0px;
-	margin-bottom: -15px;
+	margin-bottom: -5px;
 }
 
 .supprime-work:hover {
@@ -548,7 +549,7 @@ input[type="submit"] {
 }
 
 .separateur {
-	width: 420px;
+	width: 440px;
 	height: 1px;
 	border-top: 1px solid #b3b3b3;
 }
@@ -556,6 +557,8 @@ input[type="submit"] {
 .pied-modale a {
 	width: 237px;
 	margin: 35px auto 0 auto;
+	font-size: 14px;
+	height: 36px;
 }
 
 /* FOOTER */
