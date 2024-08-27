@@ -1,13 +1,10 @@
 import { fetchAPI } from "./fetchAPI.js";
-import { attendreDOM } from "./attendreDOM.js";
 
 export async function gererModale() {
      // Appeler l'affichage de la modale
      await afficherModale().then( () => {
           supprimerProjet();
           clicGalerieAjoutPhoto();
-
-
      });     
 }
 
@@ -39,11 +36,9 @@ function clicGalerieAjoutPhoto() {
 }
 
 /**
- * Gère les supression de l'utilisateur bénéficiant du token
+ * Gère les supressions de l'utilisateur bénéficiant du token
  */
 async function supprimerProjet() {
-     // appeler l'affichage de la modale
-     //await afficherModale();
 
      // Gerer les suppressions d'images
      let poubelles = document.querySelectorAll(".work div i");
@@ -77,7 +72,11 @@ async function supprimerProjet() {
                token = JSON.parse(token);
                console.log("Le token est " + token);
 
-               // Créer l'objet pour l'API
+               /* Créer l'objet pour l'API quand besoin du token le headers s'écrit 
+               headers: { 
+                    "Authorization": `Bearer ${token}`
+                    }
+                    */
                let objetSuppr = {
                     method: "DELETE",
                     headers: { 
@@ -103,6 +102,7 @@ async function supprimerProjet() {
  * mode édition, les boutons filtres passent en hidden
  * le bouton modifier s'affiche. Ecoute du clic pour 
  * afficher la fenêtre modale
+ * @returns {Promise}
  */
 async function afficherModale() {
      return new Promise(async(resolve, reject) => {
