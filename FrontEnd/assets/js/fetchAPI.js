@@ -1,6 +1,9 @@
-// Fonction GET sur l'API au choix dans l'argument de getDonnees "type"
-
-
+/**
+ * Fonction "d'appel" de l'API selon les besoins ==> l'argument "type" permet de déterminé le dossier API qui sera contacté
+ * @param {*} type nom du dossier API à "fetcher"
+ * @param {*} options facultatif - Indique le deuxième argument du fetch en cas de POST ou DELETE
+ * @returns la réponse du serveur
+ */
 export async function fetchAPI(type, options = false) {
     try {
         // Constuire l'URL de l'API
@@ -20,7 +23,7 @@ export async function fetchAPI(type, options = false) {
 
         // S'il y a un problème créer l'erreur
         if (!reponse.ok) {
-            throw new Error("Erreur dans le login ou le mot de passe, vous n'avez pas l'accès");
+            throw new Error(`Erreur dans la requête API : ${reponse.status} ${reponse.statusText}`);
         }
 
         // convertit la réponse en objet JavaScript
@@ -30,6 +33,7 @@ export async function fetchAPI(type, options = false) {
         
         return data
     } catch (error) {
-        alert(`Erreur : ${error}`)
+        console.log(`Erreur : ${error.message}`)
+        throw error; // pour pouvoir traiter l'erreur plus loin dans le debugage
     } 
 }

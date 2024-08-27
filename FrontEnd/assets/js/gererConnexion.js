@@ -44,7 +44,7 @@ async function gererConnexion() {
                sessionStorage.setItem("token", stockToken);
                
           } catch(error) {
-               console.log(error);
+               alert("Il y a une erreur dans le login ou le mot de passe, vous n'avez pas l'accès");
           }         
           // retourner sur index.html
           window.location.href = "../../index.html";

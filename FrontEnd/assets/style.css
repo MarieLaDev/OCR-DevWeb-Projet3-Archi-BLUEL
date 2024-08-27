@@ -159,18 +159,6 @@ body {
 	overflow: auto;
 }
 
-.arriere-plan {
-	display: flex;
-	position: fixed;
-	top: 59px;
-	left: 0%;
-	width: 100%;
-	height: 100%;
-	background-color: black;
-	z-index: 1;
-	opacity: 50%;
-}
-
 header {
 	display: flex;
 	justify-content: space-between;
@@ -179,8 +167,6 @@ header {
 	min-width: 1140px;
 	margin: 50px 0 50px 0;
 }
-
-
 
 section {
 	margin: 70px 0;
@@ -274,82 +260,6 @@ li a:hover {
 	margin-right: 60px;
 }
 
-/* Mise en forme de la fenêtre modale */
-#modale {
-	display: none;
-	z-index: 99;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	position: fixed;
-	top: 55%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 630px;
-	height: 688px;
-	border-radius: 10px;
-	background-color: white;
-	gap: 26px;
-}
-
-.active {
-	display: flex !important;
-}
-
-#close-modale {
-	justify-self: flex-start;
-	align-self: flex-end;
-	height: 30px;
-	width: auto;
-	margin-right: 26px;
-}
-
-.int-modale {
-	position: relative;
-}
-
-.int-modale p {
-	font-size: 26px;
-	font-family: "Work" sans;
-	text-align: center;
-}
-
-.miniatures {
-	display: grid;
-	grid-column: 1fr 1fr 1fr 1fr;
-	grid-row: auto;
-	height: 420px;
-	width: 420px;
-}
-
-.separateur {
-	width: 420px;
-	height: 1px;
-	border-top: 1px solid #b3b3b3;
-}
-
-.int-modale a {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 37px;
-	border: 1px solid #1D6154;
-	color: white;
-	background-color: #1D6154;
-	text-decoration: none;
-	padding: 0 25px 0 25px;
-	margin: 40px;
-	border-radius: 60px;
-	margin-bottom: 40px;
-	font-weight: 700;
-	font-family: 'syne';
-	font-size: 16px;
-}
-
-a.int-modale:hover {
-	opacity: 0.8;
-}
-
 /* Mise en forme zone galerie modification */
 .titre-galerie {
 	display: flex;
@@ -387,8 +297,8 @@ a.int-modale:hover {
 
 /**** Gestion des boutons filtres ****/
 .btn-zone,
-a.filter-btn,
-.focus {
+a.btn,
+.focus-btn {
 	display: flex;
 }
 
@@ -400,7 +310,7 @@ a.filter-btn,
 	margin-top: 20px;
 }
 
-a.filter-btn {
+a.btn {
 	align-items: center;
 	text-align: center;
 	height: 37px;
@@ -413,17 +323,19 @@ a.filter-btn {
 	font-weight: 700;
 	font-family: 'syne';
 	font-size: 16px;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-a.filter-btn:hover {
+a.btn:hover {
 	border: 1px solid #1D6154;
 	color: white;
 	background-color: #1D6154;
 }
 
-.focus {
+.focus-btn {
+	display: flex;
+	justify-content: center;
 	align-items: center;
-	text-align: center;
 	height: 37px;
 	text-decoration: none;
 	padding: 0 25px 0 25px;
@@ -435,7 +347,15 @@ a.filter-btn:hover {
 	border: 1px solid #1D6154;
 	color: white;
 	background-color: #1D6154;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+
 }
+
+.focus-btn:hover {
+	opacity: 0.9;
+}
+
+/********************************/
 
 #portfolio {
 	display: flex;
@@ -453,15 +373,9 @@ a.filter-btn:hover {
 
 .gallery img {
 	width: 100%;
-
 }
 
-/* Gestion des éléments à masquer */
-.hidden {
-	display: none;
-}
-
-/**************************/
+/* Gestion du formulaire contact */
 #contact {
 	width: 50%;
 	margin: 0px auto;
@@ -517,6 +431,134 @@ input[type="submit"] {
 	border-radius: 60px;
 }
 
+/* Gestion des éléments à masquer */
+.hidden {
+	display: none !important;
+}
+
+/**********************************/
+
+/* Mise en forme de la fenêtre modale */
+#modale {
+	display: none;
+	z-index: 1;
+	flex-direction: column;
+	align-items: center;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 630px;
+	height: 688px;
+	border-radius: 10px;
+	background-color: white;
+	gap: 6px;
+}
+
+.active {
+	display: flex !important;
+}
+
+.arriere-plan {
+	display: flex;
+	position: fixed;
+	top: 59px;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.3);
+	z-index: 1;
+}
+
+.tete-modale {
+	position: relative;
+	/* doit être relative pour placer les éléments enfants correctement */
+	width: 100%;
+}
+
+#retour-modale {
+	position: absolute;
+	/* doit être absolute + top et right pour se positionner correctement */
+	top: 24px;
+	left: 24px;
+}
+
+#close-modale {
+	position: absolute;
+	/* doit être absolute + top et right pour se positionner correctement */
+	top: 24px;
+	right: 24px;
+}
+
+.int-modale {
+	display: flex;
+	flex-direction: column;
+	gap: 23px;
+	margin-bottom: 45px;
+	margin-top: 45px;
+}
+
+.titre-modale {
+	font-size: 26px;
+	font-family: "Work sans";
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+.miniatures {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 8px;
+	grid-template-rows: auto;
+	width: 420px;
+	margin: 0 auto;
+	/* Pour afficher une barre de défilement verticale si besoin sans barre horizontale */
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.miniatures img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.supprime-work {
+	background-color: black;
+	padding: 10px 5px 10px 5px;
+	color: white;
+	position: relative;
+	top: -100px;
+	right: -55px;
+	border-radius: 3px;
+	margin: 0px;
+	margin-bottom: -15px;
+}
+
+.supprime-work:hover {
+	background-color: rgba(0, 0, 0, 0.7);
+	color: red;
+}
+
+.pied-modale {
+	position: absolute;
+	bottom: 45px;
+	display: flex;
+	flex-direction: column;
+}
+
+.separateur {
+	width: 420px;
+	height: 1px;
+	border-top: 1px solid #b3b3b3;
+}
+
+.pied-modale a {
+	width: 237px;
+	margin: 35px auto 0 auto;
+}
+
+/* FOOTER */
 footer {
 	display: flex;
 	justify-content: flex-end;
