@@ -505,6 +505,7 @@ input[type="submit"] {
 	margin-bottom: 40px;
 }
 
+/***** Modale supression ******/
 .miniatures {
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
@@ -541,6 +542,8 @@ input[type="submit"] {
 	color: red;
 }
 
+/***** pied modale *****/
+
 .pied-modale {
 	position: absolute;
 	bottom: 45px;
@@ -555,11 +558,84 @@ input[type="submit"] {
 }
 
 .pied-modale a {
-	width: 237px;
+	max-width: 237px;
 	margin: 35px auto 0 auto;
 	font-size: 14px;
 	height: 36px;
+	width: 237px;
 }
+
+/******* Modale ajout *****/
+
+#form-ajout {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 420px;
+	gap: 20px;
+}
+
+.zone-ajout {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 169px;
+	background-color: rgba(232, 241, 246, 1);
+	gap: 10px;
+}
+
+.fa-image {
+	display: flex;
+	align-items: center;
+	color: rgba(185, 197, 204, 1);
+	font-size: 70px;
+	height: 65px;
+}
+
+.btn-file {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 500;
+	color: rgba(48, 102, 133, 1);
+	background-color: rgba(203, 214, 220, 1);
+	border-radius: 50px;
+	height: 36px;
+	width: 173px;
+}
+
+#files {
+	margin-top: -44px;
+	height: 36px;
+	width: 173px;
+}
+
+.zone-ajout p {
+	font-size: 10px;
+	color: rgba(68, 68, 68, 1);
+}
+
+.zone-titcateg {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.zone-titcateg label {
+	margin-top: 20px;
+}
+
+.zone-titcateg input,
+.zone-titcateg select {
+	width: 100%;
+	height: 51px;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+
 
 /* FOOTER */
 footer {

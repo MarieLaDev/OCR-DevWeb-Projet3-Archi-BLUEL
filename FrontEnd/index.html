@@ -87,19 +87,19 @@
 			<p class="titre-modale" id="titre-modale-ajout">Ajout photo</p>
 			<form id="form-ajout">
 				<div class="zone-ajout">
-					<input type="file" id="file-input" required>
-					<div>
-						<i class="fa-solid fa-image"></i>
-						<button>+ Ajouter photo</button>
-						<p>jpg, png : 4mo max</p>
-					</div>
+					<i class="fa-regular fa-image fa-2xl"></i>
+					<label for="files" class="btn-file">+ Ajouter photo</label>
+					<input id="files" style="visibility:hidden;" type="file">
+					<p>jpg, png : 4mo max</p>
 				</div>
-				<label for="titre-projet">Titre</label>
-				<input type="text" name="titre" id="titre-projet" required>
-				<label for="categorie-ajout">Catégorie</label>
-				<select name="categorie" id="categorie-ajout" required>
-					<!-- Catégories de l'API -->
-				</select>	
+				<div class="zone-titcateg">
+					<label for="titre-projet">Titre</label>
+					<input type="text" name="titre" id="titre-projet" required>
+					<label for="categorie-ajout">Catégorie</label>
+					<select name="categorie" id="categorie-ajout" required>
+						<!-- Catégories de l'API -->
+					</select>
+				</div>	
 			</form>
 			<div class="pied-modale">
 				<div class="separateur"></div>

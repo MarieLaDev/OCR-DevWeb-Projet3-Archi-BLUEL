@@ -5,29 +5,13 @@ import { fetchAPI } from "./fetchAPI.js";
  */
 export async function gererAjouts() {
 
-     const btnAjoutProjet = document.getElementById("valider-ajout");
+     const btnAjoutImage = document.getElementById("files");
      
-     btnAjoutProjet.addEventListener("click", async (event) => {
+     btnAjoutImage.addEventListener("change", async (event) => {
                event.preventDefault();
                
-               /*// Cherche l'élément "parent" le plus proche ayant une classe work avec closest() <= à retenir
-               const projetMini = suppr.closest(".work");
-
-               // Récupère le numéro du projet (ID du work)
-               let idproj = projetMini.dataset.projetnum;
-               console.log(`L'ID du projet est ${idproj}`);
-               
-               // Récupère l'objet figure de la page index
-               const projet = document.getElementById("p"+idproj);
-               console.log(projet);
-
-               // Cache le projet dans miniatures et galerie
-               projet.classList.add("hidden");
-               projetMini.classList.add("hidden");
-               
-               // Transforme idproj en integer pour l'API
-               idproj=parseInt(idproj);
-
+                              
+               /*
                // Récupérer le token pour l'API
                let token = sessionStorage.getItem("token");
                
