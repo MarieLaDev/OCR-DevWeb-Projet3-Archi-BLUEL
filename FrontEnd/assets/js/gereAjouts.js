@@ -5,10 +5,42 @@ import { fetchAPI } from "./fetchAPI.js";
  */
 export async function gererAjouts() {
 
-     const btnAjoutImage = document.getElementById("files");
+     let imageChoisie = document.getElementById("files");
+
+     imageChoisie.addEventListener("change", (event) => {
+          event.preventDefault();
+          
+          let affichageImage = document.querySelector(".zone-ajout");
+          let cacherElements = document.querySelectorAll(".fa-image, .btn-file, .zone-ajout p");
+          for (let element of cacherElements) {
+               element.classList.add("hidden");
+          }
+          
+          showFile(imageChoisie, affichageImage);
+     });
      
-     btnAjoutImage.addEventListener("change", async (event) => {
-               event.preventDefault();
+     const categories = await fetchAPI("categories");
+     console.log(categories);
+
+     let selectCategorie = document.getElementById("categorie-ajout");
+     
+     for (let categorie of categories) {
+          
+          const optionCategorie = document.createElement("option");
+          optionCategorie.value = categorie.name;
+          optionCategorie.textContent = categorie.name;
+
+          selectCategorie.appendChild(optionCategorie);
+     }
+
+               /* pour vider l'image à la validation fonction viderImage() dans gererModale
+               let affichageImage = document.querySelector(".zone-ajout");
+
+               // Vérifier si une image est déjà affichée et la retirer
+               let existingImage = affichageImage.querySelector("img");
+               if (existingImage) {
+                    affichageImage.removeChild(existingImage);
+               } */
                
                               
                /*
@@ -36,5 +68,39 @@ export async function gererAjouts() {
                } catch(error) {
                     console.log("Il y a eu une erreur dans l'appel API => " + error);
                }  */
-     });
+}
+
+
+function showFile(input, affichageImage) {
+     
+          let file = input.files[0];
+   
+          console.log(`File name: ${file.name}`); // e.g my.png
+          
+          let reader = new FileReader();
+
+          reader.readAsDataURL(file);
+     
+          reader.onload = function() {
+               // Récupérer la zone d'affichage
+               let affichageImage = document.querySelector(".zone-ajout");
+
+               // Vérifier si une image est déjà affichée et la retirer
+               let existingImage = affichageImage.querySelector("img");
+               if (existingImage) {
+                    affichageImage.removeChild(existingImage);
+               }
+
+               // Construire la miniature
+               let img = document.createElement("img");
+               img.src = reader.result;
+               img.classList.add("image-ajout");
+
+               // Afficher la miniature
+               affichageImage.appendChild(img);
+          };
+     
+          reader.onerror = function() {
+          console.log(reader.error);
+          };
 }

@@ -13,10 +13,10 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
-	<script type="module" src="./assets/js/main.js" defer></script>
+	<script type="module" src="./assets/js/generateIndex.js"></script>
 </head>
 <body>
-	<div class="token hidden">
+	<div id="edit" class="hidden-edit">
 		<i class="fa-solid fa-pen-to-square"></i><p>Mode édition</p>
 	</div>
 <header>
@@ -25,7 +25,7 @@
 		<ul>
 			<li><a href="#portfolio">projets</a></li>
 			<li><a href="#contact">contact</a></li>
-			<li><a href="./pages/login.html">login</a></li>
+			<li><a id="log" href="./pages/login.html">login</a></li>
 			<li><a href="#"><img class="insta" src="./assets/icons/instagram.png" alt="Instagram"></a></li>
 		</ul>
 	</nav>
@@ -45,7 +45,7 @@
 	<section id="portfolio">
 		<div class="titre-galerie">
 			<h2>Mes Projets</h2>
-			<a href="#" class="modifier hidden"><i class="fa-solid fa-pen-to-square"></i><p> Modifier</p></a>
+			<a id="edit-works" href="#" class="modifier hidden"><i class="fa-solid fa-pen-to-square"></i><p> Modifier</p></a>
 		</div>
 		<!-- Boutons de filtre-->
 		<div class="gallery">
@@ -80,30 +80,34 @@
 			</div>
 			<div class="pied-modale" id="pied-modale-galerie">
 				<div class="separateur"></div>
-				<a class="focus-btn" id="ouvrir-ajout" href="#">Ajouter une photo</a>
+				<a class="btn focus" id="ouvrir-ajout" href="#">Ajouter une photo</a>
 			</div>
 		</div>
 		<div class="int-modale hidden" id="modale-ajout">
 			<p class="titre-modale" id="titre-modale-ajout">Ajout photo</p>
 			<form id="form-ajout">
-				<div class="zone-ajout">
-					<i class="fa-regular fa-image fa-2xl"></i>
-					<label for="files" class="btn-file">+ Ajouter photo</label>
-					<input id="files" style="visibility:hidden;" type="file">
-					<p>jpg, png : 4mo max</p>
+				<div id="zone-ajout-img">
+					<input id="files" type="file">
+					<div id="defaut-input">
+						<i class="fa-regular fa-image fa-2xl"></i>
+						<label for="files" class="btn-file">+ Ajouter photo</label>
+						
+						<p class="">jpg, png : 4mo max</p>
+					</div>
 				</div>
 				<div class="zone-titcateg">
 					<label for="titre-projet">Titre</label>
 					<input type="text" name="titre" id="titre-projet" required>
 					<label for="categorie-ajout">Catégorie</label>
 					<select name="categorie" id="categorie-ajout" required>
+						<option value="" disabled selected hidden>Choisir une catégorie...</option>
 						<!-- Catégories de l'API -->
 					</select>
 				</div>	
 			</form>
 			<div class="pied-modale">
 				<div class="separateur"></div>
-				<a class="focus-btn" id="valider-ajout" href="#">Valider</a>
+				<a class="btn focus avant-ok" id="valider-ajout" href="#">Valider</a>
 			</div>
 		</div>
 	</div>

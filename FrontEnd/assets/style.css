@@ -142,7 +142,7 @@ body {
 	align-items: center;
 }
 
-.token {
+.edit-bar {
 	display: flex;
 	z-index: 1;
 	justify-content: center;
@@ -159,13 +159,25 @@ body {
 	overflow: auto;
 }
 
+/* Classe pour cacher la barre d'édition */
+.hidden-edit {
+	display: none;
+}
+
 header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	max-width: 1140px;
 	min-width: 1140px;
-	margin: 50px 0 50px 0;
+	margin-bottom: 50px;
+	margin-top: 50px;
+}
+
+/* Lorsque la barre d'édition est visible, ajuster le margin-top du header */
+.edit-bar:not(.hidden-edit)~header {
+	margin-top: 90px;
+	margin-bottom: 35px;
 }
 
 section {
@@ -297,8 +309,7 @@ li a:hover {
 
 /**** Gestion des boutons filtres ****/
 .btn-zone,
-a.btn,
-.focus-btn {
+.btn {
 	display: flex;
 }
 
@@ -307,13 +318,15 @@ a.btn,
 	justify-content: center;
 	align-items: center;
 	gap: 15px;
-	margin-top: 20px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
-a.btn {
+.btn {
 	align-items: center;
-	text-align: center;
+	justify-content: center;
 	height: 37px;
+	width: auto;
 	border: 1px solid #1D6154;
 	color: #1D6154;
 	text-decoration: none;
@@ -326,33 +339,20 @@ a.btn {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-a.btn:hover {
+.btn:hover {
 	border: 1px solid #1D6154;
 	color: white;
 	background-color: #1D6154;
 }
 
-.focus-btn {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 37px;
-	text-decoration: none;
-	padding: 0 25px 0 25px;
-	border-radius: 60px;
-	margin-bottom: 40px;
-	font-weight: 700;
-	font-family: 'syne';
-	font-size: 16px;
-	border: 1px solid #1D6154;
-	color: white;
+.focus {
+	color: white !important;
+	;
 	background-color: #1D6154;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-
 }
 
-.focus-btn:hover {
-	opacity: 0.9;
+.focus:hover {
+	opacity: 0.9 !important;
 }
 
 /********************************/
@@ -402,14 +402,14 @@ a.btn:hover {
 	flex-direction: column;
 }
 
-#contact input {
+input {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-#contact label {
+label {
 	margin: 2em 0 1em 0;
 	font-family: "Work Sans";
 	font-weight: 500;
@@ -449,7 +449,7 @@ input[type="submit"] {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	width: 630px;
-	height: 700px;
+	height: 688px;
 	border-radius: 10px;
 	background-color: white;
 	gap: 6px;
@@ -524,20 +524,21 @@ input[type="submit"] {
 	height: auto;
 }
 
-.supprime-work {
+.trash-work {
 	background-color: black;
-	padding: 4px 4px 4px 4px;
+	padding: 4px;
 	line-height: 1;
 	color: white;
+	font-size: 12px;
 	position: relative;
-	top: -100px;
-	right: -58px;
 	border-radius: 3px;
-	margin: 0px;
 	margin-bottom: -5px;
+	margin: 0;
+	top: -105px;
+	left: 56px;
 }
 
-.supprime-work:hover {
+.trash-work:hover {
 	background-color: rgba(0, 0, 0, 0.7);
 	color: red;
 }
@@ -571,19 +572,30 @@ input[type="submit"] {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	width: 420px;
-	gap: 20px;
+	width: 440px;
+	gap: 10px;
 }
 
-.zone-ajout {
+#zone-ajout-img {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+	height: 169px;
+	background-color: rgba(232, 241, 246, 1);
+	gap: 8px;
+	position: relative;
+}
+
+#defaut-input {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 100%;
-	height: 169px;
-	background-color: rgba(232, 241, 246, 1);
-	gap: 10px;
+}
+
+.zone-titcateg label {
+	margin-bottom: 4px;
 }
 
 .fa-image {
@@ -592,6 +604,7 @@ input[type="submit"] {
 	color: rgba(185, 197, 204, 1);
 	font-size: 70px;
 	height: 65px;
+	margin-top: 2px;
 }
 
 .btn-file {
@@ -604,12 +617,22 @@ input[type="submit"] {
 	border-radius: 50px;
 	height: 36px;
 	width: 173px;
+	margin-top: 3px;
 }
 
 #files {
-	margin-top: -44px;
-	height: 36px;
-	width: 173px;
+	position: absolute;
+	top: 0px;
+	height: 169px;
+	width: 420px;
+	opacity: 0;
+	z-index: 2;
+}
+
+.image-ajout {
+	height: 100%;
+	width: auto;
+	object-fit: contain;
 }
 
 .zone-ajout p {
@@ -620,7 +643,7 @@ input[type="submit"] {
 .zone-titcateg {
 	display: flex;
 	flex-direction: column;
-	gap: 8px;
+	gap: 5px;
 }
 
 .zone-titcateg label {
@@ -633,6 +656,24 @@ input[type="submit"] {
 	height: 51px;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	font-family: "Work sans";
+	padding-left: 10px;
+	padding-right: 10px;
+	/* Pour éviter que l'input dépasse de son parent malgré les paddings box-sizong: border-box */
+	box-sizing: border-box;
+}
+
+select {
+	font-size: 1.2em;
+}
+
+option {
+	font-size: 1.2em;
+}
+
+.avant-ok {
+	border: 1px solid rgba(167, 167, 167, 1);
+	background-color: rgba(167, 167, 167, 1);
 }
 
 
