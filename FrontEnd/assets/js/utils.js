@@ -2,7 +2,7 @@ import { fetchAPI } from "./fetchAPI.js";
 
 export const utils = {
     displayOneWork,
-    setCatgorie,
+    setFiltersCatgories,
     createFiltersBtns,
     filterClick,
     editMode,
@@ -59,13 +59,17 @@ function displayOneWork(work) {
     modale.appendChild(modaleWork);
 }
 
-/** teste la catégorie d'un work pour l'ajouter au set - le set doit être déclaré avant de lancer la fonction / let addCategory = new Set(); let categories = [{"id" : 0, "name" : "Tous"},];
+/** Génération des catégories - Utilisées pour les filtres
+ * Teste la catégorie d'un work pour l'ajouter au set
+ * le set doit être déclaré avant de lancer la fonction
+ * let addCategory = new Set(); 
+ * let categories = [{"id" : 0, "name" : "Tous"},];
  * @param {object} work 
  * @param {object} addCategory (set) 
  * @param {object} categories (liste des catégories avec "Tous")
- * @returns {object} categories remplie du test set
+ * @returns {object} categories avec "Tous" pour les filtres
  */
-function setCatgorie(work, addCategory, categories) {
+function setFiltersCatgories(work, addCategory, categories) {
     let objetcategory = {
         id: work.category.id,
         name: work.category.name
@@ -85,9 +89,9 @@ function setCatgorie(work, addCategory, categories) {
     return categories
 }
 
-/** Crée les bouton filtres en fonction des catégories des projets affichés dans la galerie le returns est à afficher après "#portfilio h2"
+/** Crée les boutons filtres en fonction des catégories projets
+ *
  * @param {object} categories 
- * @returns filterArea remplie
  */
 function createFiltersBtns(categories) {
     // **** Prépare le DOM filtres ****/
@@ -151,7 +155,7 @@ function filterClick(works) {
     }
 }
 
-/** Gére le mode édition en fonction du token
+/** Gére le mode édition en fonction du token + Lance le fetch catégories
  * @param {string localStorage} token 
  * @returns {categsAPI}
  */
@@ -212,25 +216,33 @@ function showHideModal() {
 
         const closeBtn = document.getElementById("close-modale");
 
-        closeBtn.addEventListener("click", (event) => {
+        // Remise à zéro de la modale
+        const eraseModal = () => {
             event.preventDefault();
             // retirer l'arrière plan opacifié
             background.classList.remove("arriere-plan");
             modal.classList.remove("active");
+            document.getElementById("form-ajout").reset();
+            document.getElementById("zone-ajout-img").innerHTML = '';
+            document.getElementById("defaut-input").classList.remove("hidden");
+            document.getElementById("modale-galerie").classList.remove("hidden");
+            document.getElementById("modale-ajout").classList.add("hidden");
+        }
+
+        closeBtn.addEventListener("click", (event) => {
+            eraseModal();
         });
 
         // fermeture si clic en dehors de la modale
         background.addEventListener("click", (event) => {
-            event.preventDefault();
-            // retirer l'arrière plan opacifié
-            background.classList.remove("arriere-plan");
-            modal.classList.remove("active");
+            eraseModal();
         });
     });
 }
 
 /** Cache un élément work dans la galerie et la modale
  * @param {string} id du work (au format s0)
+ * @param {value} token
  */
 async function deleteOneWork(id, token) {
     // récupère l'id projet dans l'id trash
@@ -240,7 +252,6 @@ async function deleteOneWork(id, token) {
     document.getElementById("m" + workTrashId).classList.add("hidden");
 
     workTrashId = parseInt(workTrashId, 10);
-    console.log(token);
 
     // Créer l'objet pour l'API avec le token
     let objetAPI = { method: "DELETE", headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json"}};
@@ -249,9 +260,10 @@ async function deleteOneWork(id, token) {
 
     // Envoyer le DELETE à l'API et attendre la réponse
     let reponse = await fetchAPI(`works/${workTrashId}`, objetAPI); 
+    console.log("Projet " + workTrashId + " surppimé")
 }
 
-/** Gére l'affichage ou la disparition d'ajout photo dans la modale
+/** Affichage ou disparition de "l'ajout photo" dans la modale
  */
 function displayModaleAdd() {
     
@@ -280,66 +292,154 @@ function displayModaleAdd() {
     });
 }
 
-function createWork() {
+/** Gère l'ajout de projet (2 fonctions appelées showFile et processFormSubmit)
+ * @param {value} token 
+ */
+function createWork(token) {
     const form = document.getElementById("form-ajout");
-    let validBtn = document.getElementById("valider-ajout");
+    const validBtn = document.getElementById("valider-ajout");
     const inputFile = document.getElementById("files");
     const defaultInput = document.getElementById("defaut-input");
     const workTitle = document.getElementById("titre-projet");
     const categoryAdd = document.getElementById("categorie-ajout");
 
-    // Fonction pour gérer le changement dans l'input file
+    validBtn.classList.add("avant-ok");
+    
+    form.addEventListener("change", (event) => {
+        event.preventDefault();
+        // Vérifie si tous les champs du formulaire sont remplis pour changer le bouton
+        if (workTitle.value.trim() !== '' && categoryAdd.value !== '' && inputFile.files.length > 0) {
+            validBtn.classList.remove("avant-ok");
+        }
+    });
+
+    // Appelle showFile au changement du fichier
     inputFile.addEventListener("change", () => {
-        // Récupérer le fichier sélectionné
-        const file = inputFile.files[0];
-        showFile(file);
+        showFile(inputFile, defaultInput);
     });
     
-    // Vérifier si tous les champs du formulaire sont remplis
-    let fieldsOK = () => workTitle.value !== '' && categoryAdd.value !== '' && inputFile.files.length > 0;
-
-    // Fonction pour gérer le clic sur le bouton de validation
-    validBtn.addEventListener("click", (event) => {
+    /* // Écoute l'envoi du formulaire
+    form.addEventListener("submit", (event) => {
         event.preventDefault();
-    
-        if (!fieldsOK()) {
-            console.log("Titre : " + workTitle.value + "/ categorie : " + categoryAdd.value)
-            alert("Tous les champs doivent être remplis.");
-            return;
-        } else {
-            validBtn.classList.toggle("avant-ok");
-            
-            // Récupère les données et affiche dans la console
-            console.log({
-                titre: workTitle.value.trim(),
-                categorie: categoryAdd.value,
-                image: inputFile.files[0]?.name
-            });
+        processFormSubmit(token);
+    });*/
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault(); 
 
-            // Réinitialise les champs du formulaire
-            form.reset();
-            validBtn.classList.toggle("avant-ok");
-            // Réaffiche les éléments de defaut-input
-            defaultInput.classList.remove('hidden');
+        if (validateFormFields()) {
+            const work = await sendWorkToAPI(token);
+            displayOneWork(work);
+            resetForm();
         }
     });
 }
 
-function showFile(file) {
-    console.log(`File name: ${file.name}`);
+/*******************************************/
+/*** Fonctions utilisées dans createWork ***/
+/*******************************************/
 
-    const reader = new FileReader();
+/** Valide ou non le formulaire (tous les champs remplis)
+ * @returns {boolean} Formulaire valide
+ */
+function validateFormFields() {
+    const workTitle = document.getElementById("titre-projet").value.trim();
+    const categoryAdd = document.getElementById("categorie-ajout").value;
+    const inputFile = document.getElementById("files").files.length;
+
+    if (workTitle === '' || categoryAdd === '' || inputFile === 0) {
+        alert("Tous les champs doivent être remplis.");
+        return false;
+    }
+
+    return true;
+}
+
+/** Envoie le nouveau projet à l'API
+ * @param {value} token 
+ * @returns {object work} work pour displayOneWork(work)
+ */
+async function sendWorkToAPI(token) {
+    const workTitle = document.getElementById("titre-projet").value.trim();
+    const categoryAdd = document.getElementById("categorie-ajout");
+    const inputFile = document.getElementById("files");
+
+    const categoryId = categoryAdd.options[categoryAdd.selectedIndex].getAttribute("data-categoryid");
+
+    const formData = new FormData();
+    formData.append('title', workTitle);
+    formData.append('category', parseInt(categoryId));
+    formData.append('image', inputFile.files[0]);
+
+    let addWork = {
+        method: "POST",
+        body: formData,
+        headers: {"Authorization": `Bearer ${token}`}
+    };
     
-    reader.onload = () => {
-        const showImg = document.getElementById("zone-ajout-img");
-        showImg.innerHTML = '';
-        
-        const img = document.createElement("img");
-        img.src = reader.result;
-        img.classList.add("image-ajout");
-        showImg.appendChild(img);
+    let data = await fetchAPI("works", addWork);
+
+    // Construit et retourne l'objet `work` pour displayOneWork(work)
+    const work = {
+        id: data.id,
+        category: { id: data.categoryId },
+        imageUrl: data.imageUrl,
+        title: data.title
     };
 
-    reader.onerror = () => console.log(reader.error);
-    reader.readAsDataURL(file);
+    return work;
+}
+
+/** Remet le formulaire d'ajout à blanc
+ * 
+ */
+function resetForm() {
+    const defaultInput = document.getElementById("defaut-input");
+    const validBtn = document.getElementById("valider-ajout");
+
+    document.getElementById("form-ajout").reset();
+    document.getElementById("zone-ajout-img").innerHTML = ''; 
+    defaultInput.classList.remove('hidden'); 
+    validBtn.classList.add("avant-ok");
+}
+
+/** Affiche l'image choisie dans la modale
+ * @param {HTMLInputElement} inputFile 
+ * @param {HTMLElement} defaultInput 
+ */
+function showFile(inputFile, defaultInput) {
+    if (inputFile.files.length > 0) {
+        let file = inputFile.files[0];
+        if (file) {
+            // Vérifiez la taille du fichier (4 Mo max)
+            if (file.size > 4 * 1024 * 1024) {
+                alert("Le fichier image ne doit pas dépasser 4 Mo.");
+                return;
+            }
+    
+            // Vérifiez le format du fichier (.png ou .jpg)
+            const allowedFormats = ['image/png', 'image/jpeg'];
+            if (!allowedFormats.includes(file.type)) {
+                alert("Le fichier doit être au format PNG ou JPG.");
+                return;
+            }
+        }
+
+        const reader = new FileReader();
+        
+        reader.onload = () => {
+            let showImg = document.getElementById("zone-ajout-img");
+            showImg.innerHTML = '';
+            
+            const img = document.createElement("img");
+            img.src = reader.result;
+            img.classList.add("image-ajout");
+            showImg.appendChild(img);
+        };
+
+        reader.onerror = () => console.log(reader.error);
+        reader.readAsDataURL(file);
+        defaultInput.classList.add('hidden'); // Masquer le message par défaut
+    } else {
+        defaultInput.classList.remove('hidden'); // Réafficher le message par défaut
+    }
 }

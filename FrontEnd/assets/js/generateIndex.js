@@ -13,7 +13,7 @@ export async function generateIndex() {
 
      for (let work of works) {
           utils.displayOneWork(work);
-          utils.setCatgorie(work, addCategory, categories);
+          utils.setFiltersCatgories(work, addCategory, categories);
      }
      console.log(categories);
 
@@ -38,6 +38,7 @@ export async function generateIndex() {
           });
      }
      
-     utils.createWork();
      utils.displayModaleAdd();
+
+     utils.createWork(token);
 }

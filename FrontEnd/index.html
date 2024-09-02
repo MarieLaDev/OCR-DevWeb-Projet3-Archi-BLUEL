@@ -11,9 +11,9 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
 	integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
 	crossorigin="anonymous" referrerpolicy="no-referrer">
-	<meta name="description" content="">
+	<meta name="description" content="Portfolio de l'architecte d'intérieur Sophie Bluel : création d'objets, décoration d'intérieur d'appartement, de maisons, de villas de restaurants, de bar et d'hôtels">
 	<link rel="stylesheet" href="./assets/style.css">
-	<script type="module" src="./assets/js/generateIndex.js"></script>
+	<script type="module" src="./assets/js/generateIndex.js" defer></script>
 </head>
 <body>
 	<div id="edit" class="hidden-edit">
@@ -26,14 +26,14 @@
 			<li><a href="#portfolio">projets</a></li>
 			<li><a href="#contact">contact</a></li>
 			<li><a id="log" href="./pages/login.html">login</a></li>
-			<li><a href="#"><img class="insta" src="./assets/icons/instagram.png" alt="Instagram"></a></li>
+			<li><a><img class="insta" src="./assets/icons/instagram.png" alt="Instagram"></a></li>
 		</ul>
 	</nav>
 </header>
 <main>
 	<section id="introduction">
 		<figure>
-			<img src="./assets/images/sophie-bluel.png" alt="">
+			<img src="./assets/images/sophie-bluel-compressed.png" alt="">
 		</figure>
 		<article>
 			<h2>Designer d'espace</h2>
@@ -45,9 +45,9 @@
 	<section id="portfolio">
 		<div class="titre-galerie">
 			<h2>Mes Projets</h2>
-			<a id="edit-works" href="#" class="modifier hidden"><i class="fa-solid fa-pen-to-square"></i><p> Modifier</p></a>
+			<a id="edit-works" class="modifier hidden"><i class="fa-solid fa-pen-to-square"></i><p> Modifier</p></a>
 		</div>
-		<!-- Boutons de filtre-->
+			<!-- Boutons de filtre-->
 		<div class="gallery">
 			<!-- Images tirées de l'API -->
 		</div>
@@ -67,11 +67,12 @@
 	</section>
 	<!-- div d'arrière plan opacifié -->
 	<div id="arriere" class=""></div>
+	
 	<!-- div de la modale -->
-	<div id="modale">
+		<div id="modale">
 		<div class="tete-modale">
-			<a href="#" class="hidden" id="retour-modale"> <i class="fa-solid fa-arrow-left fa-xl"></i></a>
-			<a href="#" id="close-modale"><i class="fa-solid fa-xmark fa-xl"></i></a>
+			<a class="hidden" id="retour-modale"> <i class="fa-solid fa-arrow-left fa-xl"></i></a>
+			<a id="close-modale"><i class="fa-solid fa-xmark fa-xl"></i></a>
 		</div>
 		<div class="int-modale" id="modale-galerie">
 			<p class="titre-modale" id="titre-modale-galerie">Galerie photo</p>
@@ -80,18 +81,20 @@
 			</div>
 			<div class="pied-modale" id="pied-modale-galerie">
 				<div class="separateur"></div>
-				<a class="btn focus" id="ouvrir-ajout" href="#">Ajouter une photo</a>
+				<a class="btn focus" id="ouvrir-ajout">Ajouter une photo</a>
 			</div>
 		</div>
 		<div class="int-modale hidden" id="modale-ajout">
 			<p class="titre-modale" id="titre-modale-ajout">Ajout photo</p>
 			<form id="form-ajout">
-				<div id="zone-ajout-img">
+				<div id="zone-input-file">
+					<div id="zone-ajout-img">
+						<!--image input file -->
+					</div>
 					<input id="files" type="file">
 					<div id="defaut-input">
 						<i class="fa-regular fa-image fa-2xl"></i>
 						<label for="files" class="btn-file">+ Ajouter photo</label>
-						
 						<p class="">jpg, png : 4mo max</p>
 					</div>
 				</div>
@@ -104,15 +107,10 @@
 						<!-- Catégories de l'API -->
 					</select>
 				</div>	
-			</form>
-			<div class="pied-modale">
 				<div class="separateur"></div>
-				<a class="btn focus avant-ok" id="valider-ajout" href="#">Valider</a>
-			</div>
+				<input type="submit" class="btn focus" id="valider-ajout" value="Valider">
+			</form>
 		</div>
-	</div>
-	<div> 
-		<!-- Ajout de projets -->
 	</div>
 </main>
 
