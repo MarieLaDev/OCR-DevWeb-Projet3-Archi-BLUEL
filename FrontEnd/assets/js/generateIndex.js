@@ -3,6 +3,8 @@ import { utils } from "./utils.js";
 
 document.addEventListener('DOMContentLoaded', generateIndex);
 
+/** Gestion de la page index (affichages projets, filtres, modale)
+ */
 export async function generateIndex() {
      // Lance GET dans l'API works await réponse => async fonction
      const works = await fetchAPI('works');
@@ -17,28 +19,25 @@ export async function generateIndex() {
      }
      console.log(categories);
 
-     // Créer les filtres
+     // Créer les filtres + écoute
      utils.createFiltersBtns(categories);
      utils.filterClick(works);
 
      // Récupérer le token dans local storage
      let token = JSON.parse(localStorage.getItem("token"));
 
+     // Gère le mode édition (présence token)
      utils.editMode(token);
 
+     // Affiche ou masque la modale
      utils.showHideModal();
      
-     // Ecouteur des clics trashs
-     let trashs = document.querySelectorAll(".trash-work");
-     for (let del of trashs) {
-          del.addEventListener("click", async (event) => {
-               event.preventDefault();
-               const id = del.id;
-               utils.deleteOneWork(id, token);
-          });
-     }
-     
+     // Ecouteur des trashs + API DELETE + hidden projet
+     utils.deleteOneWork(token);
+
+     // Affiche ou masque l'ajout projet dans la modale
      utils.displayModaleAdd();
 
+     // Gère l'ajout d'un projet
      utils.createWork(token);
 }
