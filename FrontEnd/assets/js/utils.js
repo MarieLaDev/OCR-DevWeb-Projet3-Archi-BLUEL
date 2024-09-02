@@ -243,23 +243,31 @@ function showHideModal() {
  * @param {string} id du work (au format s0)
  * @param {value} token
  */
-async function deleteOneWork(id, token) {
-    // récupère l'id projet dans l'id trash
-    let workTrashId = id.slice(1);
+async function deleteOneWork(token) {
+    // Ecouteur des clics trashs
+    let trashs = document.querySelectorAll(".trash-work");
+    for (let del of trashs) {
+         del.addEventListener("click", async (event) => {
+            event.preventDefault();
+            const id = del.id;
+            // récupère l'id projet dans l'id trash
+            let workTrashId = id.slice(1);
 
-    document.getElementById("p" + workTrashId).classList.add("hidden");
-    document.getElementById("m" + workTrashId).classList.add("hidden");
+            document.getElementById("p" + workTrashId).classList.add("hidden");
+            document.getElementById("m" + workTrashId).classList.add("hidden");
 
-    workTrashId = parseInt(workTrashId, 10);
+            workTrashId = parseInt(workTrashId, 10);
 
-    // Créer l'objet pour l'API avec le token
-    let objetAPI = { method: "DELETE", headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json"}};
+            // Créer l'objet pour l'API avec le token
+            let objetAPI = { method: "DELETE", headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json"}};
 
-    console.log(objetAPI);
+            console.log(objetAPI);
 
-    // Envoyer le DELETE à l'API et attendre la réponse
-    let reponse = await fetchAPI(`works/${workTrashId}`, objetAPI); 
-    console.log("Projet " + workTrashId + " surppimé")
+            // Envoyer le DELETE à l'API et attendre la réponse
+            let reponse = await fetchAPI(`works/${workTrashId}`, objetAPI); 
+            console.log("Projet " + workTrashId + " surppimé");
+        });
+    }
 }
 
 /** Affichage ou disparition de "l'ajout photo" dans la modale

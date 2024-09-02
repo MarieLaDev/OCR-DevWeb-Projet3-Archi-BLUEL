@@ -1,8 +1,9 @@
 /**
  * Fonction "d'appel" de l'API selon les besoins ==> l'argument "type" permet de déterminé le dossier API qui sera contacté
- * @param {*} type nom du dossier API à "fetcher"
- * @param {*} options facultatif - Indique le deuxième argument du fetch en cas de POST ou DELETE
- * @returns la réponse du serveur
+ * @param {string} type nom du dossier API à "fetcher"
+ * @param {object} options facultatif - deuxième argument fetch
+ * méthode, charge utile, headers pour de POST ou DELETE
+ * @returns {object} les datas renvoyées par le serveur
  */
 export async function fetchAPI(type, options = false) {
     try {
