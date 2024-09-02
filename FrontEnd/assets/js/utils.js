@@ -15,7 +15,7 @@ export const utils = {
 /** Génère et affiche un élément work dans la galerie et la modale
  * @param {object} work 
  */
-function displayOneWork(work) {
+function displayOneWork(work, token) {
 
     // **** Construction galerie et  modale **** //
     const gallery = document.querySelector(".gallery");
@@ -57,6 +57,10 @@ function displayOneWork(work) {
     // Ajouter les conteneurs à la galerie et à la modale
     gallery.appendChild(galleryWork);
     modale.appendChild(modaleWork);
+
+    if (token) {
+         deleteOneWork(token);
+    }
 }
 
 /** Génération des catégories - Utilisées pour les filtres
@@ -335,7 +339,7 @@ function createWork(token) {
 
         if (validateFormFields()) {
             const work = await sendWorkToAPI(token);
-            displayOneWork(work);
+            displayOneWork(work, token);
             resetForm();
         }
     });
@@ -363,7 +367,7 @@ function validateFormFields() {
 
 /** Envoie le nouveau projet à l'API
  * @param {value} token 
- * @returns {object work} work pour displayOneWork(work)
+ * @returns {object work} work pour displayOneWork(work, token)
  */
 async function sendWorkToAPI(token) {
     const workTitle = document.getElementById("titre-projet").value.trim();
@@ -385,7 +389,7 @@ async function sendWorkToAPI(token) {
     
     let data = await fetchAPI("works", addWork);
 
-    // Construit et retourne l'objet `work` pour displayOneWork(work)
+    // Construit et retourne l'objet `work` pour displayOneWork(work, token)
     const work = {
         id: data.id,
         category: { id: data.categoryId },
