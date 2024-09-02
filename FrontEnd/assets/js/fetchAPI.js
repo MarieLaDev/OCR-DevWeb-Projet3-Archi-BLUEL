@@ -8,28 +8,31 @@ export async function fetchAPI(type, options = false) {
     try {
         // Constuire l'URL de l'API
         const url = `http://localhost:5678/api/${type}`;
-        let reponse = "";
+        let reponse;
 
-        // Vérifier s'il y a des options
-        if (options) { // Vérifie si option existe
-            // Envoyer la requête dans l'API avec les options 
+        // Vérifier s'il y a des options dans la fonction lancée
+        if (options) {
+            // Lance la requête avec l'objet options
             reponse = await fetch(url, options);
-            console.log(reponse);
         } else {
             // Sinon faire un GET simple sur l'URL
             reponse = await fetch(url);
-            console.log(reponse);
         }
-
+        
+        console.log(reponse);
+        
         // S'il y a un problème créer l'erreur
         if (!reponse.ok) {
-            throw new Error(`Erreur dans la requête API : ${reponse.status} ${reponse.statusText}`);
+            throw new Error(`Erreur dans la requête API : ${reponse.status}`);
+        }
+
+        // Gérer les réponses sans contenu, sinon erreur console
+        if (reponse.status === 204) { // pour "No Content"
+            return {}; // Retourner un objet vide
         }
 
         // convertit la réponse en objet JavaScript
         const data = await reponse.json();
-
-        console.log(data);
         
         return data
     } catch (error) {
