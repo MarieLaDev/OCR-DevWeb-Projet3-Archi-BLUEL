@@ -105,7 +105,6 @@ function createFiltersBtns(categories) {
     for (let category of categories) {
         // Crée l'élément <a> du filtre
         const newFilter = document.createElement("a");
-        newFilter.href = "#";
         newFilter.className = "btn";
         newFilter.textContent = category.name;
         newFilter.dataset.categoryname = category.name;
@@ -166,7 +165,7 @@ async function editMode(token = false) {
     const editBtn = document.querySelector(".titre-galerie a");
     const log = document.getElementById("log");
     
-    editDiv.classList.toggle("hidden-edit", token === null);
+    editDiv.classList.toggle("hidden", token === null);
     editDiv.classList.toggle("edit-bar", token !== null);
     filtersZone.classList.toggle("hidden", token !== null);
     editBtn.classList.toggle("hidden", token === null);
