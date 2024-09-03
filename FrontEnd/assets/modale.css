@@ -90,19 +90,16 @@
 }
 
 /* Pour Webkit (Chrome, Safari, Edge) */
-::-webkit-scrollbar {
+.miniatures::-webkit-scrollbar-thumb {
+     background-color: #1d615441;
+     /* Couleur de la partie défilante */
      width: 5px;
      /* Largeur de la barre de défilement */
 }
 
-.miniatures::-webkit-scrollbar-thumb {
-     background-color: #1d615441;
-     /* Couleur de la partie défilante */
-}
-
 .miniatures::-webkit-scrollbar-track {
      background: #fbfefc;
-     /* Couleur de l'arrière-plan de la barre de défilement */
+     /* Arrière-plan de la barre de défilement */
 }
 
 .miniatures div {
