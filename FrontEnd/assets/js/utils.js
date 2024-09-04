@@ -17,7 +17,6 @@ export const utils = {
  * @param {value} token 
  */
 function displayOneWork(work, token) {
-
     // **** Construction galerie et  modale **** //
     const gallery = document.querySelector(".gallery");
     const modale = document.querySelector(".miniatures");
@@ -60,11 +59,11 @@ function displayOneWork(work, token) {
     modale.appendChild(modaleWork);
 
     if (token) {
-         deleteOneWork(token);
+        deleteOneWork(token);
     }
 }
 
-/** Génération des catégories - Utilisées pour les filtres
+/** Génération des catégories pour les filtres
  * Teste la catégorie d'un work pour l'ajouter au set
  * le set doit être déclaré avant de lancer la fonction
  * let addCategory = new Set(); 
@@ -329,11 +328,6 @@ function createWork(token) {
         showFile(inputFile, defaultInput);
     });
     
-    /* // Écoute l'envoi du formulaire
-    form.addEventListener("submit", (event) => {
-        event.preventDefault();
-        processFormSubmit(token);
-    });*/
     form.addEventListener('submit', async (event) => {
         event.preventDefault(); 
 
