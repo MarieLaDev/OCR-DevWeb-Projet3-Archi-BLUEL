@@ -14,6 +14,7 @@ export const utils = {
 
 /** Génère et affiche un élément work dans la galerie et la modale
  * @param {object} work 
+ * @param {value} token 
  */
 function displayOneWork(work, token) {
 
@@ -94,7 +95,6 @@ function setFiltersCatgories(work, addCategory, categories) {
 }
 
 /** Crée les boutons filtres en fonction des catégories projets
- *
  * @param {object} categories 
  */
 function createFiltersBtns(categories) {
@@ -367,7 +367,7 @@ function validateFormFields() {
 
 /** Envoie le nouveau projet à l'API
  * @param {value} token 
- * @returns {object work} work pour displayOneWork(work, token)
+ * @returns {object work} work pour l'afficher avec displayOneWork(work, token)
  */
 async function sendWorkToAPI(token) {
     const workTitle = document.getElementById("titre-projet").value.trim();
@@ -415,7 +415,7 @@ function resetForm() {
 
 /** Affiche l'image choisie dans la modale
  * @param {HTMLInputElement} inputFile 
- * @param {HTMLElement} defaultInput 
+ * @param {HTMLElement} defaultInput zone d'ajout fichier sans l'image de l'input file pour hidden
  */
 function showFile(inputFile, defaultInput) {
     if (inputFile.files.length > 0) {
