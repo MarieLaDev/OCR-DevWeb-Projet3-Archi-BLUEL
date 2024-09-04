@@ -5,8 +5,8 @@ https://www.figma.com/file/kfKHknHySoTibZfdolGAX6/Desktop?node-id=0%3A1
 
 ## Objectif du projet
 
- - Compléter le HTML et CSS existant
- - Avec JavaScript :
+Compléter le HTML et CSS existant
+Avec JavaScript :
  -     Afficher les projets de l'API
  -     Réaliser des filtres selon la catégorie des projets (objets / appartements / restaurants)
  -     Codez la page de connexion (mode édition)
