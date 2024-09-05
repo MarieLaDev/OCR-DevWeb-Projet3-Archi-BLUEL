@@ -1,5 +1,4 @@
-/**
- * Fonction "d'appel" de l'API selon les besoins ==> l'argument "type" permet de déterminé le dossier API qui sera contacté
+/** Fonction "d'appel" de l'API selon les besoins ==> l'argument "type" permet de déterminé le dossier API qui sera contacté
  * @param {string} type nom du dossier API à "fetcher"
  * @param {object} options facultatif - deuxième argument fetch
  * méthode, charge utile, headers pour de POST ou DELETE

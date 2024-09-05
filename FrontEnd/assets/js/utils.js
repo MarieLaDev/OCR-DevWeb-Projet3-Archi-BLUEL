@@ -299,6 +299,7 @@ function displayModaleAdd() {
     btnRetour.addEventListener("click", (event) => {
         event.preventDefault();
         toggleModales();
+        resetForm();
     });
 }
 
