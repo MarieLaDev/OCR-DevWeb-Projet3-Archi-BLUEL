@@ -418,7 +418,6 @@ function showFile(inputFile, defaultInput) {
     if (inputFile.files.length > 0) {
         let file = inputFile.files[0];
         if (file) {
-            let fileOK = true
             // Vérifiez la taille du fichier (4 Mo max)
             if (file.size > 4 * 1024 * 1024) {
                 alert("Le fichier image ne doit pas dépasser 4 Mo.");
