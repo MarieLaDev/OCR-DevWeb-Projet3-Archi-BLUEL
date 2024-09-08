@@ -318,26 +318,31 @@ function createWork(token) {
 
     validBtn.classList.add("avant-ok");
     
+    let fileOK = false
+
     form.addEventListener("change", (event) => {
         event.preventDefault();
         // Vérifie si tous les champs du formulaire sont remplis pour changer le bouton
-        if (workTitle.value.trim() !== '' && categoryAdd.value !== '' && inputFile.files.length > 0) {
+        if (workTitle.value.trim() !== '' && categoryAdd.value !== '' && inputFile.files.length > 0 && fileOK) {
             validBtn.classList.remove("avant-ok");
         }
     });
-
+    
     // Appelle showFile au changement du fichier
     inputFile.addEventListener("change", () => {
-        showFile(inputFile, defaultInput);
+        fileOK = showFile(inputFile, defaultInput);
     });
     
     form.addEventListener('submit', async (event) => {
-        event.preventDefault(); 
-
-        if (validateFormFields()) {
-            const work = await sendWorkToAPI(token);
-            displayOneWork(work, token);
-            resetForm();
+        event.preventDefault();
+        if (fileOK) {
+            if (validateFormFields()) {
+                const work = await sendWorkToAPI(token);
+                displayOneWork(work, token);
+                resetForm();
+            }
+        } else { 
+            alert("Vous devez choisir une image valide");
         }
     });
 }
@@ -358,7 +363,6 @@ function validateFormFields() {
         alert("Tous les champs doivent être remplis.");
         return false;
     }
-
     return true;
 }
 
@@ -413,23 +417,26 @@ function resetForm() {
 /** Affiche l'image choisie dans la modale
  * @param {HTMLInputElement} inputFile 
  * @param {HTMLElement} defaultInput zone d'ajout fichier sans l'image de l'input file pour hidden
+ * @returns {boolean} true si le fichier est valide, sinon false
  */
-function showFile(inputFile, defaultInput) {
+function showFile(inputFile, defaultInput, fileOK) {
     if (inputFile.files.length > 0) {
         let file = inputFile.files[0];
+        
         if (file) {
             // Vérifiez la taille du fichier (4 Mo max)
             if (file.size > 4 * 1024 * 1024) {
                 alert("Le fichier image ne doit pas dépasser 4 Mo.");
-                return;
+                return false;
             }
     
             // Vérifiez le format du fichier (.png ou .jpg)
             const allowedFormats = ['image/png', 'image/jpeg'];
             if (!allowedFormats.includes(file.type)) {
                 alert("Le fichier doit être au format PNG ou JPG.");
-                return;
+                return false;
             }
+            
         }
 
         const reader = new FileReader();
@@ -446,8 +453,13 @@ function showFile(inputFile, defaultInput) {
 
         reader.onerror = () => console.log(reader.error);
         reader.readAsDataURL(file);
-        defaultInput.classList.add('hidden'); // Masquer le message par défaut
+        // Masquer le message par défaut
+        defaultInput.classList.add('hidden'); 
+
+        return true;
     } else {
-        defaultInput.classList.remove('hidden'); // Réafficher le message par défaut
+        // Réafficher le message par défaut
+        defaultInput.classList.remove('hidden'); 
+        return false;
     }
 }
