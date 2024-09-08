@@ -229,6 +229,7 @@ function showHideModal() {
             document.getElementById("defaut-input").classList.remove("hidden");
             document.getElementById("modale-galerie").classList.remove("hidden");
             document.getElementById("modale-ajout").classList.add("hidden");
+            document.getElementById("retour-modale").classList.add("hidden");
         }
 
         closeBtn.addEventListener("click", (event) => {
@@ -238,6 +239,7 @@ function showHideModal() {
         // fermeture si clic en dehors de la modale
         background.addEventListener("click", (event) => {
             eraseModal();
+
         });
     });
 }
@@ -416,6 +418,7 @@ function showFile(inputFile, defaultInput) {
     if (inputFile.files.length > 0) {
         let file = inputFile.files[0];
         if (file) {
+            let fileOK = true
             // Vérifiez la taille du fichier (4 Mo max)
             if (file.size > 4 * 1024 * 1024) {
                 alert("Le fichier image ne doit pas dépasser 4 Mo.");
