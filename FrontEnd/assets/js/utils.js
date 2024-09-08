@@ -229,6 +229,7 @@ function showHideModal() {
             document.getElementById("defaut-input").classList.remove("hidden");
             document.getElementById("modale-galerie").classList.remove("hidden");
             document.getElementById("modale-ajout").classList.add("hidden");
+            document.getElementById("retour-modale").classList.add("hidden");
         }
 
         closeBtn.addEventListener("click", (event) => {
@@ -238,6 +239,7 @@ function showHideModal() {
         // fermeture si clic en dehors de la modale
         background.addEventListener("click", (event) => {
             eraseModal();
+
         });
     });
 }
