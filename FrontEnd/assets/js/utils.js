@@ -230,6 +230,7 @@ function showHideModal() {
             document.getElementById("modale-galerie").classList.remove("hidden");
             document.getElementById("modale-ajout").classList.add("hidden");
             document.getElementById("retour-modale").classList.add("hidden");
+            document.getElementById("valider-ajout").classList.add("avant-ok");
         }
 
         closeBtn.addEventListener("click", (event) => {
