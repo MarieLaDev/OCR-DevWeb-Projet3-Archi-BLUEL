@@ -1,4 +1,5 @@
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
+![MADE WITH JAVASCRIPT](https://img.shields.io/badge/MADE%20WITH-JAVASCRIPT-black?style=for-the-badge&color=Yellow)
 
 # Portfolio-architecte-sophie-bluel
 
