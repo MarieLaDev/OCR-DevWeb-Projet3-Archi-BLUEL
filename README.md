@@ -3,7 +3,7 @@
 
 # Portfolio-architecte-sophie-bluel
 
-Code du projet 6 d'intégrateur web. selon la maquette Figma
+Code du projet 3 Développeur web. selon la maquette Figma
 https://www.figma.com/file/kfKHknHySoTibZfdolGAX6/Desktop?node-id=0%3A1
 
 ## Objectif du projet
