@@ -1,5 +1,4 @@
 ![MADE WITH JavaScript](https://img.shields.io/badge/Made_with-JavaScript-F7DF1E?logo=javascript&logoColor=F7DF1E&style=for-the-badge)
-![BUILT WITH LOVE](https://img.shields.io/badge/built%20with-%E2%9D%A4-white?style=for-the-badge&color=violet)
 
 # Portfolio-architecte-sophie-bluel
 
